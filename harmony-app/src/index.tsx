@@ -1,37 +1,17 @@
-import './index.css';
-import './ContextMenu.css';
-
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { CircularProgress } from '@material-ui/core';
-import { ToastContainer, cssTransition } from 'react-toastify';
-import { BrowserRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
-
-import { store } from './redux/store';
+import './index.css';
+import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { Root } from './Root';
-import './i18n/i18n';
 
-const Index = React.memo(() => {
-	return (
-		<Provider store={store}>
-			<ToastContainer
-				position="bottom-left"
-				pauseOnFocusLoss={false}
-				transition={cssTransition({
-					enter: 'zoomIn',
-					exit: 'slideOut',
-					duration: 200,
-				})}
-			/>
-			<BrowserRouter>
-				<Root />
-			</BrowserRouter>
-		</Provider>
-	);
-});
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
 
-ReactDOM.render(<Index />, document.getElementById('root'));
-
-serviceWorker.register();
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
+serviceWorker.unregister();
