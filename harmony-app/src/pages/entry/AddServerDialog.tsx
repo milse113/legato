@@ -6,7 +6,16 @@ import {
   Button,
   DialogContent,
   TextField,
+  makeStyles,
 } from "@material-ui/core";
+
+const addServerDialogStyles = makeStyles((theme) => ({
+  dialogContent: {
+    "& *": {
+      marginBottom: theme.spacing(0.5),
+    },
+  },
+}));
 
 export const AddServerDialog = React.memo(
   (props: {
@@ -14,29 +23,40 @@ export const AddServerDialog = React.memo(
     cancel: () => void;
     open: boolean;
   }) => {
+    const classes = addServerDialogStyles();
     const [label, setLabel] = useState("");
-    const [ip, setIP] = useState("");
+    const [hostname, setHostName] = useState("");
 
     const onLabelChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setLabel(event.currentTarget.value);
     };
 
-    const onIPChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setIP(event.currentTarget.value);
+    const onHostnameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      setHostName(event.currentTarget.value);
     };
 
     return (
-      <Dialog open={props.open}>
+      <Dialog open={props.open} onClose={props.cancel}>
         <DialogTitle>Add Server</DialogTitle>
-        <DialogContent>
-          <TextField placeholder="Label" onChange={onLabelChange} fullWidth />
-          <TextField placeholder="IP" onChange={onIPChange} fullWidth />
+        <DialogContent className={classes.dialogContent}>
+          <TextField
+            label="Label"
+            onChange={onLabelChange}
+            fullWidth
+            variant="outlined"
+          />
+          <TextField
+            label="Hostname"
+            onChange={onHostnameChange}
+            fullWidth
+            variant="outlined"
+          />
         </DialogContent>
         <DialogActions>
           <Button onClick={props.cancel}>Cancel</Button>
           <Button
-            onClick={() => props.serverAdded(label, ip)}
-            disabled={!ip || !label}
+            onClick={() => props.serverAdded(label, hostname)}
+            disabled={!hostname || !label}
           >
             Add
           </Button>
