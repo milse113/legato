@@ -1,5 +1,5 @@
 import { PaletteType, Color } from "@material-ui/core";
-import { red, lightBlue } from "@material-ui/core/colors";
+import { red, deepOrange } from "@material-ui/core/colors";
 import { createAction, createReducer } from "@reduxjs/toolkit";
 
 export interface IRootState {
@@ -14,7 +14,7 @@ const initialState: IRootState = {
   theme: {
     type: "dark",
     primary: red,
-    secondary: lightBlue,
+    secondary: deepOrange,
   },
 };
 
