@@ -2,22 +2,17 @@ import React, { useState } from "react";
 import {
   makeStyles,
   Paper,
-  Typography,
-  List,
-  ListItem,
-  ListItemText,
   Button,
   Container,
-  ListItemSecondaryAction,
-  IconButton,
   Stepper,
   Step,
   StepLabel,
 } from "@material-ui/core";
-import { Delete, ChevronRight, ChevronLeft } from "@material-ui/icons";
+import { ChevronRight, ChevronLeft } from "@material-ui/icons";
 import { useTranslation } from "react-i18next";
 
-import { AddServerDialog } from "./AddServerDialog";
+import { HarmonyDark } from "../../HarmonyDark";
+
 import { ServerSelect } from "./ServerSelect";
 import { AuthPage } from "./AuthPage";
 
@@ -29,8 +24,8 @@ const entryStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "center",
     background: `radial-gradient(circle at 50% 10%,
-      rgb(43, 38, 57),
-      rgb(38, 35, 49) 70.71%)`,
+      ${HarmonyDark[700]},
+      ${HarmonyDark[800]} 70.71%)`,
   },
   entryBody: {
     padding: theme.spacing(2),
@@ -54,7 +49,6 @@ const steps = 2;
 
 export const Entry = React.memo(() => {
   const classes = entryStyles();
-  const i18n = useTranslation(["entry"]);
   const [selectedServer, setSelectedServer] = useState("");
   const [stepComplete, setStepComplete] = useState(false);
   const [step, setStep] = useState(1);

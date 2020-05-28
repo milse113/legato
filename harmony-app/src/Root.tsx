@@ -4,6 +4,7 @@ import { createMuiTheme, ThemeProvider, CssBaseline } from "@material-ui/core";
 
 import { RootState } from "./redux/redux";
 import { Loading } from "./components/Loading";
+import { HarmonyDark } from "./HarmonyDark";
 
 const EntryPage = lazy(async () => ({
   default: await (await import("./pages/entry/Entry")).Entry,
@@ -17,6 +18,10 @@ export const Root = React.memo(() => {
       type: themeState.type,
       primary: themeState.primary,
       secondary: themeState.secondary,
+      background: {
+        default: HarmonyDark[700],
+        paper: HarmonyDark[600],
+      },
     },
   });
 
